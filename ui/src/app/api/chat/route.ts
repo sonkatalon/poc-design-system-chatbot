@@ -1,5 +1,7 @@
 import { bedrock } from "@ai-sdk/amazon-bedrock";
+import { openai } from "@ai-sdk/openai";
 import { CoreMessage, streamText } from "ai";
+import { type NextRequest } from "next/server";
 import { buildSystemMessage, retrieve } from "@/3rdparty/bedrock";
 
 function getLastUserText(messages: CoreMessage[]) {
@@ -19,7 +21,11 @@ function getLastUserText(messages: CoreMessage[]) {
   return last.text;
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
+  const searchParams = req.nextUrl.searchParams;
+  const provider = searchParams.get("provider");
+  const modelParam = searchParams.get("model");
+
   const { messages } = await req.json();
   const question = getLastUserText(messages);
   console.log({ question });
@@ -27,10 +33,20 @@ export async function POST(req: Request) {
   const results = await retrieve(question);
   console.log({ results: results.map(({ metadata }) => metadata) });
 
+  const model =
+    provider === "openai"
+      ? openai(modelParam ?? "gpt-4o")
+      : bedrock(modelParam ?? "anthropic.claude-3-5-sonnet-20240620-v1:0");
   const stream = await streamText({
-    model: bedrock("anthropic.claude-3-5-sonnet-20240620-v1:0"),
+    model,
     messages: [buildSystemMessage(results), ...messages],
-    onFinish: ({ text: answer, usage }) => console.log({ answer, usage }),
+    onFinish: ({ text: answer, usage }) =>
+      console.log({
+        provider: model.provider,
+        modelId: model.modelId,
+        answer,
+        usage,
+      }),
   });
 
   return stream.toDataStreamResponse();

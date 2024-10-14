@@ -48,11 +48,22 @@ Create a `.env.local` file inside `./ui` with these:
 |                | NEXTAUTH_SECRET       | See [random.org]              |
 | Knowledge Base | KNOWLEDGE_BASE_ID     | `KnowledgeBaseId` from CDK    |
 |                | DATA_SOURCE_ID        | `DataSourceId` from CDK       |
+| OpenAI         | OPENAI_API_KEY        | See [OpenAI Platform]         |
 
 [Google Cloud Platform]: https://console.cloud.google.com/apis/credentials
+[OpenAI Platform]: https://platform.openai.com/api-keys
 [random.org]: https://www.random.org/passwords/
+
+Then you can start the development server:
 
 ```bash
 cd ./ui
 npm run dev
 ```
+
+Quick links:
+
+- [Claude 3.5 Sonnet](http://localhost:3000) via AWS Bedrock
+- OpenAI
+  - [GPT-4o](http://localhost:3000/?provider=openai)
+  - [GPT-4o Mini](http://localhost:3000/?provider=openai&model=gpt-4o-mini)

@@ -5,7 +5,8 @@ import { useVercelUseChatRuntime } from "@assistant-ui/react-ai-sdk";
 import { useChat } from "ai/react";
 
 export default function Home() {
-  const chat = useChat({ api: "/api/chat" });
+  const search = typeof window === "object" ? window.location.search : "";
+  const chat = useChat({ api: `/api/chat${search}` });
   const runtime = useVercelUseChatRuntime(chat);
 
   return (
