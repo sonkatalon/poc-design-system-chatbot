@@ -4,8 +4,8 @@
 
 ```bash
 cd ./cdk
-npm install
-npx deploy
+export CDK_APP_ID=
+npx cdk deploy
 ```
 
 ## 2. Crawl data
@@ -24,15 +24,14 @@ export CONFLUENCE_HOST=
 npx tsx bin/confluence.ts id1 id2 id3
 ```
 
-### Start ingestion job
+### Upload to S3
 
-Once all the data has been crawled, upload to S3 and start the ingestion job.
+Once all the data has been crawled, upload to S3 and start the ingestion job from UI (see below).
 
 ```bash
 cd ./crawler
 export OUTPUT_DIR=$(pwd)/crawled
 aws s3 sync "${OUTPUT_DIR}" s3://${DocsBucketName} --delete
-curl -X POST ${ApiGatewayUrl}ingestions
 ```
 
 ## 3. Build the UI

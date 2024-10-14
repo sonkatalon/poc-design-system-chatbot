@@ -4,4 +4,4 @@ import * as cdk from "aws-cdk-lib";
 import { CdkStack } from "../lib/cdk-stack";
 
 const app = new cdk.App();
-new CdkStack(app, "HoangDuyKatbot", {});
+new CdkStack(app, process.env.CDK_APP_ID!, {});
