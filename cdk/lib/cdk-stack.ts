@@ -23,5 +23,8 @@ export class CdkStack extends Stack {
     });
 
     new CfnOutput(this, "DocsBucketName", { value: docsBucket.bucketName });
+    new CfnOutput(this, "KnowledgeBaseId", {
+      value: knowledgeBase.knowledgeBaseId,
+    });
   }
 }

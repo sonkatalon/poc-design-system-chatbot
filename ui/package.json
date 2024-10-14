@@ -9,10 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/amazon-bedrock": "^0.0.29",
+    "@assistant-ui/react": "^0.5.81",
+    "@assistant-ui/react-ai-sdk": "^0.6.12",
+    "@aws-sdk/client-bedrock-agent-runtime": "^3.670.0",
+    "ai": "^3.4.9",
     "next": "14.2.15",
     "next-auth": "^4.24.8",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",
