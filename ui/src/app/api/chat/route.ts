@@ -21,12 +21,16 @@ function getLastUserText(messages: CoreMessage[]) {
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
-  const text = getLastUserText(messages);
-  const results = await retrieve(text);
+  const question = getLastUserText(messages);
+  console.log({ question });
+
+  const results = await retrieve(question);
+  console.log({ results: results.map(({ metadata }) => metadata) });
 
   const stream = await streamText({
     model: bedrock("anthropic.claude-3-5-sonnet-20240620-v1:0"),
     messages: [buildSystemMessage(results), ...messages],
+    onFinish: ({ text: answer, usage }) => console.log({ answer, usage }),
   });
 
   return stream.toDataStreamResponse();
