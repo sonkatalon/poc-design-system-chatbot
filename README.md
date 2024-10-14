@@ -34,3 +34,15 @@ export OUTPUT_DIR=$(pwd)/crawled
 aws s3 sync "${OUTPUT_DIR}" s3://${DocsBucketName} --delete
 curl -X POST ${ApiGatewayUrl}ingestions
 ```
+
+## 3. Build the UI
+
+### Environment variables
+
+Create a `.env.local` file inside `./ui` with these:
+
+| Name                 | Description | Note                                                  |
+| -------------------- | ----------- | ----------------------------------------------------- |
+| GOOGLE_CLIENT_ID     |             | See https://console.cloud.google.com/apis/credentials |
+| GOOGLE_CLIENT_SECRET |             |                                                       |
+| NEXTAUTH_SECRET      |             | See https://www.random.org/passwords/                 |
