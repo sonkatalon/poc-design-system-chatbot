@@ -48,6 +48,7 @@ Create a `.env.local` file inside `./ui` with these:
 |                | GOOGLE_CLIENT_SECRET  |                               |
 |                | NEXTAUTH_SECRET       | See [random.org]              |
 | Knowledge Base | KNOWLEDGE_BASE_ID     | `KnowledgeBaseId` from CDK    |
+|                | DATA_SOURCE_ID        | `DataSourceId` from CDK       |
 
 [Google Cloud Platform]: https://console.cloud.google.com/apis/credentials
 [random.org]: https://www.random.org/passwords/
