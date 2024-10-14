@@ -37,20 +37,22 @@ curl -X POST ${ApiGatewayUrl}ingestions
 
 ## 3. Build the UI
 
-### Environment variables
-
 Create a `.env.local` file inside `./ui` with these:
 
-| Group          | Variables             | Note                        |
-| -------------- | --------------------- | --------------------------- |
-| AWS access key | AWS_ACCESS_KEY_ID     | See [AWS IAM]               |
-|                | AWS_REGION            |                             |
-|                | AWS_SECRET_ACCESS_KEY |                             |
-| Google Sign In | GOOGLE_CLIENT_ID      | See [Google Cloud Platform] |
-|                | GOOGLE_CLIENT_SECRET  |                             |
-|                | NEXTAUTH_SECRET       | See [random.org]            |
-| Knowledge Base | KNOWLEDGE_BASE_ID     | `KnowledgeBaseId` from CDK  |
+| Group          | Variables             | Note                          |
+| -------------- | --------------------- | ----------------------------- |
+| AWS access key | AWS_ACCESS_KEY_ID     | `AccessKeyId` from CDK        |
+|                | AWS_REGION            | `AwsRegion` from CDK          |
+|                | AWS_SECRET_ACCESS_KEY | `AwsSecretAccessKey` from CDK |
+| Google Sign In | GOOGLE_CLIENT_ID      | See [Google Cloud Platform]   |
+|                | GOOGLE_CLIENT_SECRET  |                               |
+|                | NEXTAUTH_SECRET       | See [random.org]              |
+| Knowledge Base | KNOWLEDGE_BASE_ID     | `KnowledgeBaseId` from CDK    |
 
-[AWS IAM]: https://console.aws.amazon.com/iam/home
 [Google Cloud Platform]: https://console.cloud.google.com/apis/credentials
 [random.org]: https://www.random.org/passwords/
+
+```bash
+cd ./ui
+npm run dev
+```

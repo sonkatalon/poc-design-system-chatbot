@@ -67,6 +67,27 @@ export class CdkStack extends Stack {
       })
     );
 
+    const user = new iam.User(this, "user");
+    const accessKey = new iam.AccessKey(this, "accessKey", { user });
+    const policy = new iam.Policy(this, "policy", {
+      statements: [
+        new iam.PolicyStatement({
+          actions: ["bedrock:Retrieve"],
+          resources: [knowledgeBase.knowledgeBaseArn],
+        }),
+        new iam.PolicyStatement({
+          actions: ["bedrock:InvokeModelWithResponseStream"],
+          resources: ["*"],
+        }),
+      ],
+    });
+    policy.attachToUser(user);
+
+    new CfnOutput(this, "AwsAccessKeyId", { value: accessKey.accessKeyId });
+    new CfnOutput(this, "AwsRegion", { value: this.region });
+    new CfnOutput(this, "AwsSecretAccessKey", {
+      value: accessKey.secretAccessKey.unsafeUnwrap(),
+    });
     new CfnOutput(this, "ApiGatewayUrl", { value: apiGateway.url });
     new CfnOutput(this, "DocsBucketName", { value: docsBucket.bucketName });
     new CfnOutput(this, "KnowledgeBaseId", {
