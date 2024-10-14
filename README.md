@@ -41,8 +41,16 @@ curl -X POST ${ApiGatewayUrl}ingestions
 
 Create a `.env.local` file inside `./ui` with these:
 
-| Name                 | Description | Note                                                  |
-| -------------------- | ----------- | ----------------------------------------------------- |
-| GOOGLE_CLIENT_ID     |             | See https://console.cloud.google.com/apis/credentials |
-| GOOGLE_CLIENT_SECRET |             |                                                       |
-| NEXTAUTH_SECRET      |             | See https://www.random.org/passwords/                 |
+| Group          | Variables             | Note                        |
+| -------------- | --------------------- | --------------------------- |
+| AWS access key | AWS_ACCESS_KEY_ID     | See [AWS IAM]               |
+|                | AWS_REGION            |                             |
+|                | AWS_SECRET_ACCESS_KEY |                             |
+| Google Sign In | GOOGLE_CLIENT_ID      | See [Google Cloud Platform] |
+|                | GOOGLE_CLIENT_SECRET  |                             |
+|                | NEXTAUTH_SECRET       | See [random.org]            |
+| Knowledge Base | KNOWLEDGE_BASE_ID     | `KnowledgeBaseId` from CDK  |
+
+[AWS IAM]: https://console.aws.amazon.com/iam/home
+[Google Cloud Platform]: https://console.cloud.google.com/apis/credentials
+[random.org]: https://www.random.org/passwords/

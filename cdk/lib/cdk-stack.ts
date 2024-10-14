@@ -68,7 +68,9 @@ export class CdkStack extends Stack {
     );
 
     new CfnOutput(this, "ApiGatewayUrl", { value: apiGateway.url });
-
     new CfnOutput(this, "DocsBucketName", { value: docsBucket.bucketName });
+    new CfnOutput(this, "KnowledgeBaseId", {
+      value: knowledgeBase.knowledgeBaseId,
+    });
   }
 }
