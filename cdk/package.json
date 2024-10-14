@@ -11,7 +11,6 @@
     "cdk": "cdk"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.145",
     "@types/jest": "^29.5.12",
     "@types/node": "20.12.7",
     "aws-cdk": "2.162.0",
@@ -21,11 +20,7 @@
     "typescript": "~5.4.5"
   },
   "dependencies": {
-    "@aws-sdk/client-bedrock-agent": "^3.669.0",
     "@cdklabs/generative-ai-cdk-constructs": "^0.1.273",
-    "@middy/core": "^5.5.0",
-    "@middy/http-cors": "^5.5.0",
-    "@middy/http-error-handler": "^5.5.0",
     "aws-cdk-lib": "2.162.0",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"

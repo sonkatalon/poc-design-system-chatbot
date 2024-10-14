@@ -1,18 +1,8 @@
 import { bedrock } from "@cdklabs/generative-ai-cdk-constructs";
-import {
-  CfnOutput,
-  Duration,
-  RemovalPolicy,
-  Stack,
-  StackProps,
-} from "aws-cdk-lib";
-import * as apigw from "aws-cdk-lib/aws-apigateway";
+import { CfnOutput, RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
 import * as iam from "aws-cdk-lib/aws-iam";
-import { Runtime } from "aws-cdk-lib/aws-lambda";
-import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
-import { join } from "path";
 
 export class CdkStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -32,40 +22,6 @@ export class CdkStack extends Stack {
       bucket: docsBucket,
       knowledgeBase: knowledgeBase,
     });
-
-    const apiGateway = new apigw.RestApi(this, "restApi", {
-      defaultCorsPreflightOptions: {
-        allowOrigins: apigw.Cors.ALL_ORIGINS,
-      },
-    });
-
-    const apiGatewayTimeout = Duration.seconds(29);
-    const startIngestionJobFunction = new NodejsFunction(
-      this,
-      "startIngestionJobFunction",
-      {
-        entry: join(__dirname, "../lambda/startIngestionJob/index.ts"),
-        environment: {
-          DATA_SOURCE_ID: s3DataSource.dataSourceId,
-          KNOWLEDGE_BASE_ID: knowledgeBase.knowledgeBaseId,
-        },
-        runtime: Runtime.NODEJS_20_X,
-        timeout: apiGatewayTimeout,
-      }
-    );
-    startIngestionJobFunction.addToRolePolicy(
-      new iam.PolicyStatement({
-        actions: ["bedrock:StartIngestionJob"],
-        resources: [knowledgeBase.knowledgeBaseArn, docsBucket.bucketArn],
-      })
-    );
-
-    apiGateway.root.addResource("ingestions").addMethod(
-      "POST",
-      new apigw.LambdaIntegration(startIngestionJobFunction, {
-        timeout: apiGatewayTimeout,
-      })
-    );
 
     const user = new iam.User(this, "user");
     const accessKey = new iam.AccessKey(this, "accessKey", { user });
@@ -88,7 +44,6 @@ export class CdkStack extends Stack {
     new CfnOutput(this, "AwsSecretAccessKey", {
       value: accessKey.secretAccessKey.unsafeUnwrap(),
     });
-    new CfnOutput(this, "ApiGatewayUrl", { value: apiGateway.url });
     new CfnOutput(this, "DocsBucketName", { value: docsBucket.bucketName });
     new CfnOutput(this, "KnowledgeBaseId", {
       value: knowledgeBase.knowledgeBaseId,
