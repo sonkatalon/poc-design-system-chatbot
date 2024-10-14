@@ -28,11 +28,11 @@ export class CdkStack extends Stack {
     const policy = new iam.Policy(this, "policy", {
       statements: [
         new iam.PolicyStatement({
-          actions: ["bedrock:ListIngestionJobs", "bedrock:StartIngestionJob"],
-          resources: [knowledgeBase.knowledgeBaseArn],
-        }),
-        new iam.PolicyStatement({
-          actions: ["bedrock:Retrieve"],
+          actions: [
+            "bedrock:ListIngestionJobs",
+            "bedrock:Retrieve",
+            "bedrock:StartIngestionJob",
+          ],
           resources: [knowledgeBase.knowledgeBaseArn],
         }),
         new iam.PolicyStatement({
