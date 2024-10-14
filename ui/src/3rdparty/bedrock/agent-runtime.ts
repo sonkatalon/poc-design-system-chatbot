@@ -3,18 +3,13 @@ import {
   RetrieveCommand,
 } from "@aws-sdk/client-bedrock-agent-runtime";
 import { CoreSystemMessage } from "ai";
+import { clientConfig, knowledgeBaseConfig } from "./config";
 
-const client = new BedrockAgentRuntimeClient({
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? "",
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? "",
-  },
-  region: process.env.AWS_REGION ?? "",
-});
+const client = new BedrockAgentRuntimeClient(clientConfig);
 
 export async function retrieve(text: string) {
   const command = new RetrieveCommand({
-    knowledgeBaseId: process.env.KNOWLEDGE_BASE_ID ?? "",
+    knowledgeBaseId: knowledgeBaseConfig.knowledgeBaseId,
     retrievalQuery: { text },
   });
   const response = await client.send(command);

@@ -28,6 +28,10 @@ export class CdkStack extends Stack {
     const policy = new iam.Policy(this, "policy", {
       statements: [
         new iam.PolicyStatement({
+          actions: ["bedrock:ListIngestionJobs", "bedrock:StartIngestionJob"],
+          resources: [knowledgeBase.knowledgeBaseArn],
+        }),
+        new iam.PolicyStatement({
           actions: ["bedrock:Retrieve"],
           resources: [knowledgeBase.knowledgeBaseArn],
         }),
@@ -43,6 +47,9 @@ export class CdkStack extends Stack {
     new CfnOutput(this, "AwsRegion", { value: this.region });
     new CfnOutput(this, "AwsSecretAccessKey", {
       value: accessKey.secretAccessKey.unsafeUnwrap(),
+    });
+    new CfnOutput(this, "DataSourceId", {
+      value: s3DataSource.dataSourceId,
     });
     new CfnOutput(this, "DocsBucketName", { value: docsBucket.bucketName });
     new CfnOutput(this, "KnowledgeBaseId", {
