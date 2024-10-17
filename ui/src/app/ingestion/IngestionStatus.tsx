@@ -11,7 +11,7 @@ export const IngestionStatus: FC<IngestionStatusProps> = ({ job }) => {
   }
 
   const { status } = job;
-  const updatedAt = job.updatedAt!.toLocaleString();
+  const updatedAt = job.updatedAt!.toISOString();
   const documents = job.statistics?.numberOfDocumentsScanned ?? 0;
   if (status === "COMPLETE") {
     return (
