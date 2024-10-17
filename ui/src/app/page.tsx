@@ -3,6 +3,9 @@
 import { Thread } from "@assistant-ui/react";
 import { useVercelUseChatRuntime } from "@assistant-ui/react-ai-sdk";
 import { useChat } from "ai/react";
+import avatar from "./avatar.jpg";
+
+const assistantAvatar = { alt: "Shinobi Chatbot", src: avatar.src };
 
 export default function Home() {
   const search = typeof window === "object" ? window.location.search : "";
@@ -11,7 +14,7 @@ export default function Home() {
 
   return (
     <div className="h-full">
-      <Thread assistantAvatar={{ fallback: "HD" }} runtime={runtime} />
+      <Thread assistantAvatar={assistantAvatar} runtime={runtime} />
     </div>
   );
 }
