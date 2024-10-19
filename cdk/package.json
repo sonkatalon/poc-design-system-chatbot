@@ -10,13 +10,16 @@
     "cdk": "cdk"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
     "@types/node": "20.12.7",
     "aws-cdk": "2.162.0",
     "ts-node": "^10.9.2",
     "typescript": "~5.4.5"
   },
   "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.675.0",
     "@cdklabs/generative-ai-cdk-constructs": "^0.1.273",
+    "@pinecone-database/pinecone": "^3.0.3",
     "aws-cdk-lib": "2.162.0",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"

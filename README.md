@@ -4,6 +4,10 @@
 
 ```bash
 cd ./cdk
+
+# Create API key at https://app.pinecone.io/organizations/-/projects/-/keys
+export PINECONE_API_KEY=
+
 export CDK_APP_ID=
 npx cdk deploy
 ```
