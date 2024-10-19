@@ -5,7 +5,7 @@ import { useVercelUseChatRuntime } from "@assistant-ui/react-ai-sdk";
 import { useChat } from "ai/react";
 import avatar from "./avatar.jpg";
 
-const assistantAvatar = { alt: "Shinobi Chatbot", src: avatar.src };
+const assistantAvatar = { alt: "Katbot", src: avatar.src };
 
 export default function Home() {
   const search = typeof window === "object" ? window.location.search : "";
