@@ -47,14 +47,10 @@ Create a `.env.local` file inside `./ui` with these:
 | AWS access key | AWS_ACCESS_KEY_ID     | `AccessKeyId` from CDK        |
 |                | AWS_REGION            | `AwsRegion` from CDK          |
 |                | AWS_SECRET_ACCESS_KEY | `AwsSecretAccessKey` from CDK |
-| Google Sign In | GOOGLE_CLIENT_ID      | See [Google Cloud Platform]   |
-|                | GOOGLE_CLIENT_SECRET  |                               |
-|                | NEXTAUTH_SECRET       | See [random.org]              |
 | Knowledge Base | KNOWLEDGE_BASE_ID     | `KnowledgeBaseId` from CDK    |
 |                | DATA_SOURCE_ID        | `DataSourceId` from CDK       |
 | OpenAI         | OPENAI_API_KEY        | See [OpenAI Platform]         |
 
-[Google Cloud Platform]: https://console.cloud.google.com/apis/credentials
 [OpenAI Platform]: https://platform.openai.com/api-keys
 [random.org]: https://www.random.org/passwords/
 
