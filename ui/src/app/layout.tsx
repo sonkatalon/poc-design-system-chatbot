@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Shinobot",
-  description: "Assistant AI chatbot with team knowledge.",
+  title: "Hoàng Duy",
+  description: "Katalon Design System Chatbot",
 };
 
 export default async function RootLayout({
