@@ -52,5 +52,5 @@ export async function POST(req: NextRequest) {
   return stream.toDataStreamResponse();
 }
 
-export const maxDuration = 60;
+export const maxDuration = 300;
 export const dynamic = "force-dynamic";
