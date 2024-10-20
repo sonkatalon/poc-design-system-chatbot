@@ -13,6 +13,7 @@
     "@ai-sdk/openai": "^0.0.66",
     "@assistant-ui/react": "^0.5.81",
     "@assistant-ui/react-ai-sdk": "^0.6.12",
+    "@assistant-ui/react-markdown": "^0.2.19",
     "@aws-sdk/client-bedrock-agent": "^3.670.0",
     "@aws-sdk/client-bedrock-agent-runtime": "^3.670.0",
     "ai": "^3.4.9",
